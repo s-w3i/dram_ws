@@ -1,0 +1,8 @@
+# ComputePath.srv
+string robot_name
+string goal_vertex_name
+---
+bool success
+string message
+Path path
+rmf_building_map_msgs/GraphNode[] graph_nodes

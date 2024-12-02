@@ -1,0 +1,7 @@
+# UpdateTabuSet.srv
+string action        # 'add' or 'remove'
+int32[] vertices     # List of vertex indices to add/remove
+
+---
+bool success
+string message

@@ -1,0 +1,7 @@
+# Request
+string[] robot_names           # List of robot names
+string[] goal_vertex_names     # List of goal vertex names (matching robot_names)
+---
+# Response
+bool success                   # Whether paths were successfully computed
+string message                 # Optional message about success/failure

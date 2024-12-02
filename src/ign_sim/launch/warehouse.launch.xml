@@ -1,0 +1,22 @@
+<?xml version='1.0' ?>
+
+<launch>
+  <arg name="use_sim_time" default="true"/>
+  <!-- Common launch -->
+  <include file="$(find-pkg-share rmf_demos)/common.launch.xml">
+    <arg name="use_sim_time" value="$(var use_sim_time)"/>
+    <arg name="viz_config_file" value ="$(find-pkg-share ign_sim)/config/def.rviz"/>
+    <arg name="config_file" value="$(find-pkg-share ign_sim)/maps/v2.building.yaml"/>
+    <arg name="dashboard_config_file" value="$(find-pkg-share rmf_demos_dashboard_resources)/hotel/dashboard_config.json"/>
+  
+  </include>
+
+  <group>
+    <include file="$(find-pkg-share rmf_demos_fleet_adapter)/launch/fleet_adapter.launch.xml">
+      <arg name="use_sim_time" value="$(var use_sim_time)"/>
+      <arg name="nav_graph_file" value="$(find-pkg-share ign_sim)/maps/0.yaml" />
+      <arg name="config_file" value="$(find-pkg-share ign_sim)/config/tinyRobot_config.yaml"/>
+    </include>
+  </group>
+
+</launch>

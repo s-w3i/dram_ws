@@ -1,0 +1,11 @@
+# UpdateResources.srv
+
+# Request
+string robot_name
+dram_interface/Path windowed_path
+rmf_building_map_msgs/GraphNode[] graph_nodes
+
+---
+# Response
+bool success
+string message

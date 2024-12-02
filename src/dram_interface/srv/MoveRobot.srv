@@ -1,0 +1,10 @@
+# MoveRobot.srv
+
+# Request
+string robot_name
+string goal_vertex_name
+
+---
+# Response
+bool success
+string message
