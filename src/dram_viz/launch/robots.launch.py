@@ -1,10 +1,10 @@
 from launch import LaunchDescription
 from launch_ros.actions import Node
-from launch.actions import DeclareLaunchArgument
+from launch.actions import DeclareLaunchArgument, TimerAction
 from launch.substitutions import LaunchConfiguration
 
 def generate_launch_description():
-    # Declare Launch Arguments for Parameters (optional, allows overriding via command line)
+    # Declare Launch Arguments for Parameters
     sliding_window_size_arg = DeclareLaunchArgument(
         'sliding_window_size',
         default_value='5',
@@ -36,6 +36,13 @@ def generate_launch_description():
     distance_threshold = LaunchConfiguration('distance_threshold')
 
     # Define Nodes
+    resource_manager_node = Node(
+        package='dram_plan',
+        executable='resource_manager',
+        name='resource_manager',
+        output='screen',
+    )
+
     path_planner_node = Node(
         package='dram_plan',
         executable='path_planner',
@@ -68,6 +75,22 @@ def generate_launch_description():
         }]
     )
 
+    # TimerActions to delay the launch of other nodes until `resource_manager` is initialized
+    delayed_path_planner_node = TimerAction(
+        period=5.0,  # Delay in seconds
+        actions=[path_planner_node]
+    )
+
+    delayed_resource_allocator_node = TimerAction(
+        period=5.0,
+        actions=[resource_allocator_node]
+    )
+
+    delayed_command_to_fastapi_service_node = TimerAction(
+        period=5.0,
+        actions=[command_to_fastapi_service_node]
+    )
+
     # Assemble Launch Description
     ld = LaunchDescription()
 
@@ -78,9 +101,9 @@ def generate_launch_description():
     ld.add_action(distance_threshold_arg)
 
     # Add Nodes to Launch Description
-    ld.add_action(path_planner_node)
-    ld.add_action(resource_allocator_node)
-    ld.add_action(command_to_fastapi_service_node)
-
+    ld.add_action(resource_manager_node)
+    ld.add_action(delayed_path_planner_node)
+    ld.add_action(delayed_resource_allocator_node)
+    ld.add_action(delayed_command_to_fastapi_service_node)
 
     return ld
