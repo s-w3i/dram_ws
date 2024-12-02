@@ -15,5 +15,9 @@ Custom path and robot marker display on Rviz
 ```
 Start DRAM modules
 ```bash
-ros2 launch dram_viz robots.launch.py
+ ros2 launch dram_viz robots.launch.py
+```
+To send a service to robot
+```bash
+ ros2 service call /move_robot dram_interface/srv/MoveRobot "{robot_name: 'AGV1', goal_vertex_name: 'AGV1'}"
 ```
