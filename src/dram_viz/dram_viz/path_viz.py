@@ -40,7 +40,7 @@ class PathVisualizer(Node):
         marker.id = 0  # ID 0 for full path
         marker.type = Marker.LINE_STRIP
         marker.action = Marker.ADD
-        marker.scale.x = 0.3  # Line width
+        marker.scale.x = 0.2  # Line width
 
         # Green color for full path
         marker.color.r = 0.0
@@ -76,7 +76,7 @@ class PathVisualizer(Node):
         marker.id = 1  # ID 1 for window path
         marker.type = Marker.LINE_STRIP
         marker.action = Marker.ADD
-        marker.scale.x = 0.5  # Line width
+        marker.scale.x = 0.1  # Line width
 
         # Blue color for window path
         marker.color.r = 0.0

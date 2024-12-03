@@ -39,9 +39,9 @@ class RobotStateVisualizer(Node):
         marker.pose.orientation.w = 1.0
 
         # Marker size
-        marker.scale.x = 0.7  # Diameter of the sphere
-        marker.scale.y = 0.7
-        marker.scale.z = 0.5
+        marker.scale.x = 0.5  # Diameter of the sphere
+        marker.scale.y = 0.5
+        marker.scale.z = 0.3
 
         # Marker color: purple
         marker.color.r = 0.5

@@ -881,13 +881,13 @@ levels:
         color: [1, 0, 0, 0.5]
         filename: v2.png
         transform:
-          scale: 0.050000000000000003
+          scale: 0.20000000000000001
           translation_x: 0
           translation_y: 0
           yaw: 0
         visible: false
     measurements:
-      - [0, 1, {distance: [3, 116.95]}]
+      - [0, 1, {distance: [3, 35]}]
     vertices:
       - [0, 0, 0, ""]
       - [0, 2339, 0, ""]

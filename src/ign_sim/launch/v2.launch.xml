@@ -15,7 +15,7 @@
 
   <!-- Simulation launch -->
   <include file="$(find-pkg-share ign_sim)/simulation.launch.xml">
-    <arg name="map_name" value="v2" />
+    <arg name="map_name" value="v2_2" />
     <arg name="ignition_version" value="$(var ignition_version)" />
     <arg name="headless" value="1" />
   </include>

@@ -81,6 +81,18 @@ Visualization Manager:
         Reliability Policy: Reliable
         Value: /nav_graph_markers
       Value: true
+    - Class: rviz_default_plugins/MarkerArray
+      Enabled: true
+      Name: MarkerArray
+      Namespaces:
+        {}
+      Topic:
+        Depth: 5
+        Durability Policy: Volatile
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+        Value: /robot_state_markers_array
+      Value: true
     - Class: rviz_default_plugins/Marker
       Enabled: true
       Name: Marker
@@ -152,25 +164,25 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz_default_plugins/Orbit
-      Distance: 96.44578552246094
+      Distance: 61.60517120361328
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
         Swap Stereo Eyes: false
         Value: false
       Focal Point:
-        X: 164.94403076171875
-        Y: -68.53121948242188
-        Z: -27.00210952758789
+        X: 27.48097801208496
+        Y: -18.037353515625
+        Z: -11.466846466064453
       Focal Shape Fixed Size: true
       Focal Shape Size: 0.05000000074505806
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 1.1653982400894165
+      Pitch: 1.4847970008850098
       Target Frame: <Fixed Frame>
-      Value: Orbit (rviz)
-      Yaw: 4.678582191467285
+      Value: Orbit (rviz_default_plugins)
+      Yaw: -1.554600715637207
     Saved: ~
 Window Geometry:
   Displays:
@@ -188,5 +200,5 @@ Window Geometry:
   Views:
     collapsed: false
   Width: 1908
-  X: 1888
-  Y: -32
+  X: 1920
+  Y: 0

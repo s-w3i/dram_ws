@@ -48,8 +48,8 @@ class NavGraphVisualizer(Node):
             vertex_marker.pose.orientation.y = 0.0
             vertex_marker.pose.orientation.z = 0.0
             vertex_marker.pose.orientation.w = 1.0
-            vertex_marker.scale.x = 0.5  # Size of the square block
-            vertex_marker.scale.y = 0.5
+            vertex_marker.scale.x = 0.2  # Size of the square block
+            vertex_marker.scale.y = 0.2
             vertex_marker.scale.z = 0.1
             vertex_marker.color.r = 1.0  # Orange color
             vertex_marker.color.g = 0.5
@@ -67,7 +67,7 @@ class NavGraphVisualizer(Node):
             edge_marker.id = edge_id
             edge_marker.type = Marker.LINE_STRIP
             edge_marker.action = Marker.ADD
-            edge_marker.scale.x = 0.2  # Line width
+            edge_marker.scale.x = 0.1  # Line width
             edge_marker.color.r = 1.0  # Orange color
             edge_marker.color.g = 0.5
             edge_marker.color.b = 0.0

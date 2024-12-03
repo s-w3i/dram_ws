@@ -25,7 +25,7 @@ def generate_launch_description():
 
     distance_threshold_arg = DeclareLaunchArgument(
         'distance_threshold',
-        default_value='1.0',
+        default_value='0.5',
         description='Distance threshold in meters to consider waypoint as passed.'
     )
 
