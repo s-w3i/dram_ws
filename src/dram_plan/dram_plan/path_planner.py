@@ -1,5 +1,3 @@
-# path_planner.py
-
 import rclpy
 from rclpy.node import Node
 from dram_interface.msg import Path, Location
@@ -35,7 +33,6 @@ class PathPlanner(Node):
             self.robot_state_callback,
             10
         )
-        # Removed reserved_nodes_sub as it's no longer needed
 
         # Service
         self.compute_path_service = self.create_service(
@@ -47,7 +44,6 @@ class PathPlanner(Node):
         # Internal Data Structures
         self.nav_graph = None  # Full navigation graph from /nav_graph
         self.robot_states = {}  # {robot_name: (x, y)}
-        # Removed reserved_nodes as it's no longer needed
 
         # Retry parameters
         self.max_retries = 5          # Maximum number of retries
@@ -245,17 +241,34 @@ class PathPlanner(Node):
     def compute_shortest_path(self, start_idx, goal_idx, graph: Graph):
         """
         Computes the shortest path from start_idx to goal_idx using Dijkstra's algorithm.
-        Only considers nodes and edges present in the provided graph.
+        Considers the directionality of edges based on 'is_bidirectional' parameter.
         """
         vertices = graph.vertices
         edges = graph.edges
 
-        # Build adjacency list from nav_graph
+        # Build adjacency list from nav_graph considering edge directionality
         adjacency = {idx: [] for idx in range(len(vertices))}
 
         for edge in edges:
+            # Add edge from v1 to v2
             adjacency[edge.v1_idx].append(edge.v2_idx)
-            if edge.edge_type == 0:  # BIDIRECTIONAL
+
+            # Check if the edge is bidirectional
+            is_bidirectional = True  # Default to True if not specified
+            for param in edge.params:
+                if param.name == 'is_bidirectional':
+                    if param.type == 4:  # TYPE_BOOL
+                        is_bidirectional = param.value_bool
+                    elif param.type == 2:  # TYPE_INT
+                        is_bidirectional = (param.value_int != 0)
+                    elif param.type == 1:  # TYPE_STRING
+                        is_bidirectional = (param.value_string.lower() == 'true')
+                    else:
+                        is_bidirectional = True  # Default to True
+                    break  # Found the parameter, no need to check further
+
+            if is_bidirectional:
+                # Add edge from v2 to v1
                 adjacency[edge.v2_idx].append(edge.v1_idx)
 
         # Dijkstra's algorithm
